@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>library</groupId>
-    <artifactId>share_memory_by_embedded_zookeeper</artifactId>
+    <artifactId>share_memory</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>share_memory_by_embedded_zookeeper</name>
+    <name>share_memory</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
