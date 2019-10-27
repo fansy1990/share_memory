@@ -10,6 +10,9 @@ import org.infinispan.manager.DefaultCacheManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.concurrent.Callable;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 import static com.share.memory.infinispan.CacheType.PersonCat;
@@ -21,7 +24,7 @@ import static com.share.memory.infinispan.CacheType.StringPerson;
  * date : 2019/10/22 AM8:21.
  */
 
-public class InfinispanStarter implements Runnable{
+public class InfinispanStarter implements Callable<Boolean>{
     private static final Logger LOG = LoggerFactory.getLogger(InfinispanStarter.class);
     private static DefaultCacheManager cacheManager;
 
@@ -68,8 +71,23 @@ public class InfinispanStarter implements Runnable{
         personCache = cacheManager.getCache(StringPerson.name());
         personCatCache = cacheManager.getCache(PersonCat.name());
     }
+
+
+    public static void startServer() throws InterruptedException {
+        InfinispanStarter starter = new InfinispanStarter();
+        Future<Boolean> result = Executors.newFixedThreadPool(1).submit(starter);
+        boolean flag = true ;
+        while (flag){
+            if(result.isDone()){
+                flag = false;
+            }
+            Thread.sleep(1000);
+        }
+        LOG.info("Infinispan thread started!");
+    }
+
     @Override
-    public void run() {
+    public Boolean call() throws Exception {
         // Setup up a clustered cache manager
         GlobalConfigurationBuilder global = GlobalConfigurationBuilder.defaultClusteredBuilder();
         // Make the default cache a distributed synchronous one
@@ -80,10 +98,6 @@ public class InfinispanStarter implements Runnable{
         // Obtain the default cache
 //        Cache<String, String> cache = cacheManager.getCache();
         initial();
-    }
-
-    public static void startServer(){
-        InfinispanStarter starter = new InfinispanStarter();
-        new Thread(starter).start();
+        return true;
     }
 }

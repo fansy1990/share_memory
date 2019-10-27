@@ -1,6 +1,5 @@
-package com.share.memory.zk.source_code_server;
+package org.apache.zookeeper.server.quorum;
 
-import org.apache.zookeeper.server.quorum.QuorumPeerConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,4 +1,4 @@
-package com.share.memory.zk.source_code_server;
+package org.apache.zookeeper.server.quorum;
 
 /**
  * author : fanzhe
@@ -10,8 +10,6 @@ import com.share.memory.utils.ClassPathFileProcess;
 import org.apache.zookeeper.jmx.ManagedUtil;
 import org.apache.zookeeper.server.*;
 import org.apache.zookeeper.server.persistence.FileTxnSnapLog;
-import org.apache.zookeeper.server.quorum.QuorumPeer;
-import org.apache.zookeeper.server.quorum.QuorumPeerConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

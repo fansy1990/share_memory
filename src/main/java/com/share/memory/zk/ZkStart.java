@@ -1,7 +1,7 @@
 package com.share.memory.zk;
 
 import com.share.memory.zk.client.ZKOperator;
-import com.share.memory.zk.source_code_server.QuorumPeerMain;
+import org.apache.zookeeper.server.quorum.QuorumPeerMain;
 
 import java.io.IOException;
 
