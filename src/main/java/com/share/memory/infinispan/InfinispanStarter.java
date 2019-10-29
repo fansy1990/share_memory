@@ -32,6 +32,17 @@ public class InfinispanStarter implements Callable<Boolean>{
     private static Cache<Person, Cat> personCatCache;
 
 
+    public static void put(String key, Person p){
+        put(CacheType.StringPerson,key,p,180);
+    }
+
+    public static boolean check(String key){
+        return (boolean)check(CacheType.StringPerson,key);
+    }
+    public static Person revoke(String key){
+        return personCache.remove(key);
+    }
+
     public static void put(CacheType cacheType, Object key, Object value, long expireSeconds){
         switch (cacheType){
             case StringPerson:
@@ -63,6 +74,17 @@ public class InfinispanStarter implements Callable<Boolean>{
         return null;
     }
 
+
+    public static Object check(CacheType cacheType, Object key){
+        switch (cacheType){
+            case PersonCat:
+                return personCatCache.containsKey(key);
+            case StringPerson:
+                return personCache.containsKey(key);
+        }
+        return null;
+    }
+
     private void initial(){
         if(cacheManager == null){
             LOG.error("DefaultCacheManager is null");
@@ -70,6 +92,7 @@ public class InfinispanStarter implements Callable<Boolean>{
         }
         personCache = cacheManager.getCache(StringPerson.name());
         personCatCache = cacheManager.getCache(PersonCat.name());
+        LOG.info("CacheManager initialed!");
     }
 
 

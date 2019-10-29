@@ -1,11 +1,13 @@
 package com.share.memory.infinispan.model;
 
+import java.io.Serializable;
+
 /**
  * author : fanzhe
  * email : fansy1990@foxmail.com
  * date : 2019/10/22 AM8:33.
  */
-public class Cat {
+public class Cat implements Serializable{
     private String name;
     private int age;
 
