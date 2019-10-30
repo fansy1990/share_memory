@@ -28,11 +28,15 @@ public class RemoteClient {
         Logger root = Logger.getLogger("");
         root.setLevel(Level.INFO);
         String key ;
-        for(int i =0 ;i< 1000;i++){
-            key = set();
-            System.out.println("key: "+ key);
-            check(key);
-            revoke(key);
+        while (true) {
+
+            for (int i = 0; i < 1000; i++) {
+                key = set();
+                System.out.println("key: " + key);
+                check(key);
+                revoke(key);
+            }
+            Thread.sleep(1000);
         }
 
     }
