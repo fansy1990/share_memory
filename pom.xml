@@ -20,7 +20,7 @@
         <swagger-annotations.version>1.5.21</swagger-annotations.version>
         <swagger-models.version>1.5.21</swagger-models.version>
         <zk.version>3.4.14</zk.version>
-        <infinispan.version>9.4.0.Final</infinispan.version>
+        <infinispan.version>11.0.6.Final</infinispan.version>
     </properties>
 
     <dependencies>
